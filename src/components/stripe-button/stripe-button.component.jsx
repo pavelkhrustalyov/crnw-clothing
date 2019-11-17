@@ -11,9 +11,9 @@ const StripeCheckoutButton = ({ price }) => {
     }
 
     return (
-        <StripeCheckout 
-            label="Pay Now" 
-            name="CRWN Clothing" 
+        <StripeCheckout
+            label="Pay Now"
+            name="CRWN Clothing"
             billingAddress
             shippingAddress
             image="https://sendeyo.com/up/d/f3eb2117da"
@@ -24,6 +24,6 @@ const StripeCheckoutButton = ({ price }) => {
             stripeKey={publishableKey}
         />
     );
-}
+};
  
 export default StripeCheckoutButton;

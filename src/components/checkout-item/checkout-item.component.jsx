@@ -1,27 +1,31 @@
 import React from 'react';
 
-import './checkout-item.styles.scss';
-
 import { connect } from 'react-redux';
 import { removeItemFromCart } from '../../redux/cart/cart.actions';
 import { addItem, decreaseItemInCart } from '../../redux/cart/cart.actions';
+import { 
+    CheckoutItemContainer,
+    QuantityContainer,
+    ImageContainer,
+    TextContainer,
+    RemoveButtonContainer } from './checkout-item.styles';
 
 const CheckoutItem = ({ cartItem, removeItemFromCart, addItem, decreaseItemInCart }) => {
     const { id, name, quantity, imageUrl, price } = cartItem;
     return (
-        <div className="checkout-item">
-            <div className="image-container">
-                <img src={imageUrl} alt={name}/>
-            </div>
-            <span className="name">{name}</span>
-            <div className="quantity">
-                <span className="arrow" onClick={() => decreaseItemInCart(cartItem)}>&#10094;</span>
-                <span className="value">{quantity}</span>
-                <span className="arrow" onClick={() => addItem(cartItem)}>&#10095;</span>
-            </div>
-            <span className="price">{price}</span>
-            <span className="remove-button" onClick={() => removeItemFromCart(id)}>&#10005;</span>
-        </div>
+        <CheckoutItemContainer>
+            <ImageContainer>
+                <img src={imageUrl} alt={name} />
+            </ImageContainer>
+            <TextContainer>{name}</TextContainer>
+            <QuantityContainer>
+                <div onClick={() => decreaseItemInCart(cartItem)}>&#10094;</div>
+                <span>{quantity}</span>
+                <div onClick={() => addItem(cartItem)}>&#10095;</div>
+            </QuantityContainer>
+            <TextContainer>{price}</TextContainer>
+            <RemoveButtonContainer className="remove-button" onClick={() => removeItemFromCart(id)}>&#10005;</RemoveButtonContainer>
+        </CheckoutItemContainer>
     );
 };
 
@@ -29,6 +33,6 @@ const mapDispatchToProps = {
     removeItemFromCart,
     addItem,
     decreaseItemInCart
-}
+};
  
 export default connect(null, mapDispatchToProps)(CheckoutItem);
